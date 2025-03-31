@@ -127,6 +127,8 @@ void criarEncomenda(Encomenda *nova_encomenda){
 
 }
 
+// aaaaaaaaa
+// dsadsadasdd jjn 
 
 void listarEncomendas(NoEncomenda *lista_encomendas){
 
