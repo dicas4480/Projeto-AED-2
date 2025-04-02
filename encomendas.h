@@ -9,7 +9,7 @@
 typedef struct {
     char nome[30];
     /*podemos adicionar
-    mas detalhes para 
+    mais detalhes para 
     a estrutura pessoa*/
 }Pessoa;
 
