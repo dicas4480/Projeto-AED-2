@@ -9,7 +9,7 @@
 typedef struct {
     char nome[30];
     /*podemos adicionar
-    mas detalhes para 
+    mais detalhes para 
     a estrutura pessoa*/
 }Pessoa;
 
@@ -145,7 +145,6 @@ void listarEncomendas(NoEncomenda *lista_encomendas){
     }
 }
 
-
 // Funcao para libertar a memoria alocada para a lista de encomendas
 // Esta funcao percorre a lista e liberta cada nodo, garantindo que não há vazamentos de memória.
 // A função é chamada quando a lista de encomendas não é mais necessária,
@@ -203,5 +202,4 @@ void remover_encomenda(NoEncomenda **lista_encomendas, int id){
     free(temp);
     printf("Encomenda com ID %d removida com sucesso!\n", id);
 }
-
 
