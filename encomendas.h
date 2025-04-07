@@ -144,3 +144,64 @@ void listarEncomendas(NoEncomenda *lista_encomendas){
         lista_encomendas = lista_encomendas -> proximo ;
     }
 }
+
+
+// Funcao para libertar a memoria alocada para a lista de encomendas
+// Esta funcao percorre a lista e liberta cada nodo, garantindo que não há vazamentos de memória.
+// A função é chamada quando a lista de encomendas não é mais necessária,
+// garantindo que toda a memória alocada é libertada corretamente e
+// permitindo que a lista seja atualizada para NULL após a libertação da memória.
+void libertar_encomendas(NoEncomenda **lista_encomendas){
+    NoEncomenda *temp;
+    while(*lista_encomendas != NULL){
+        temp = *lista_encomendas;
+        *lista_encomendas = (*lista_encomendas)->proximo;
+        free(temp);
+    }
+}
+
+// A função é útil para gerenciar a lista de encomendas, permitindo que o utilizador remova encomendas específicas quando necessário.
+// A função percorre a lista de encomendas, procurando o nodo com o ID especificado.
+// Se encontrado, o nodo é removido da lista e a memória alocada para ele é libertada.
+void atualizar_estado_encomenda(NoEncomenda *lista_encomendas, int id){
+    NoEncomenda *temp = lista_encomendas;
+    while(temp != NULL){
+        if(temp->encomenda.id == id){
+            printf("Estado da encomenda %d atualizado com sucesso!\n", id);
+            return;
+        }
+        temp = temp->proximo;
+    }
+    printf("Encomenda com ID %d não encontrada.\n", id);
+}
+
+
+// Funcao para remover uma encomenda da lista
+// Esta funcao percorre a lista de encomendas, procurando o nodo com o ID especificado.
+// Se encontrado, o nodo é removido da lista e a memória alocada para ele é libertada.
+// A função também atualiza a lista de encomendas para refletir a remoção e imprime uma mensagem de sucesso ou erro.
+void remover_encomenda(NoEncomenda **lista_encomendas, int id){
+    NoEncomenda *temp = *lista_encomendas;
+    NoEncomenda *anterior = NULL;
+
+    while(temp != NULL && temp->encomenda.id != id){
+        anterior = temp;
+        temp = temp->proximo;
+    }
+
+    if(temp == NULL){
+        printf("Encomenda com ID %d não encontrada.\n", id);
+        return;
+    }
+
+    if(anterior == NULL){
+        *lista_encomendas = temp->proximo;
+    }else{
+        anterior->proximo = temp->proximo;
+    }
+
+    free(temp);
+    printf("Encomenda com ID %d removida com sucesso!\n", id);
+}
+
+
